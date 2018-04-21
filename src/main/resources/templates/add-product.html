@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <title>Admin Site</title>
+    <link rel="stylesheet" href="../static/css/common.css" th:href="@{/css/common.css}"/>
+</head>
+<body>
+    <section class="wrap-menu-article">
+   
+        <div class="wrap-article" style="text-align: right; background:gray">
+            <p style="color: white">Hello <span sec:authentication="principal.user.username"></span></p>
+            <!-- <p>You are <span sec:authentication="principal.user.role"></span></p> -->
+            <a class="btn btn-style bgPink" href="#" th:href="@{/logout}">logout</a>
+        </div> <!-- /wrap-article -->
+        
+			<h2 style="text-align:center">Add New Product</h2>
+			<form method="POST" th:action="@{/add-product}">
+        		<table style="margin:0 auto" border="1" th:object="${product}">
+	        		<tbody>
+	        			<tr>
+	        				<td>Product Name:</td>
+	        				<td><input type="text" th:field="${product.name}" /></td>
+	        			</tr>
+	        			<tr>
+	        				<td>Category:</td>
+	        				<td>
+	        					<select th:field="${product.category.cateId}">
+	        						<option th:each="category : ${categories}" th:value="${category.cateId}" th:text="${category.name}"></option>
+	        					</select>
+	        				</td>
+	      
+	        			</tr>
+	        		</tbody>
+        		</table>
+        		<div style="text-align:center"><button>Add</button></div>
+        		</form>
+    </section>
+    
+</body>
+<script type="text/javascript" src="../static/js/jquery-3.1.1.min.js" th:src="@{/js/jquery-3.1.1.min.js}"></script>
+<script type="text/javascript">
+    $(document).ready(function() {
+
+    });
+</script>
+</html>
